@@ -1,0 +1,12 @@
+{%extends base%}
+{%block title%}User{%endblock%}
+{%block body%}
+
+{%if user.teammember %}
+<p> Yay you're set to go! </p>
+{%else%}
+<p> Please register with a team. You can't play otherwise. </p>
+{%endif%}
+
+{%endblock%}
+

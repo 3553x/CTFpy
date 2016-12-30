@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>{% block title %}CTF{% endblock %}</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="{% static 'normalize.css' %}">
+		<link rel="stylesheet" href="{% static 'skeleton.css' %}">
+	</head>
+	<body>
+		<div class="container">
+		<header>
+			<h1>CTF for CSSoc</h1>
+		</header>
+		<nav>
+		{% if user.is_authenticated %}
+		<div class="row">
+			<div class="three columns"><a class="button" href="/challenges">Challenges</a></div>
+			<div class="two columns"><a class="button" href="/team/">Team</a></div>
+			<div class="two columns"><a class="button" href="/stats/">Stats</a></div>
+			<div class="two columns"><a class="button" href="/info/">Info</a></div>
+			<div class="two columns"><a class="button" href="/user/logout/">Logout</a></div>
+		</div>
+		{% else %}
+		<div class="row">
+			<div class="three columns"><a class="button" href="/user/register/">Login/Register</a></div>
+			<div class="two columns"><a class="button" href="/info/">Info</a></div>
+			<div class="three columns"><a class="button" href="/stats/">Stats</a></div>
+		</div>
+		{% endif %}
+		</nav>
+		<hr>
+	{%block body %}{%endblock%}
+		</div>
+	</body>
+
+</html>

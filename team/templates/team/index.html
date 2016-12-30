@@ -1,0 +1,15 @@
+{% extends base %}
+{%block title%}Team{%endblock%}
+{%block body%}
+{% if TeamMembers %}
+	<p> Your teammembers:</p>
+	<ul>
+		{% for member in TeamMembers %}
+			<li>{{member.username}}</li>
+		{% endfor %}
+	</ul>
+
+{% else %}
+<p> You don't appear to be in a team. Join one or you can't play. </p>
+{% endif %}
+{%endblock%}

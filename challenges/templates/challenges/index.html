@@ -1,0 +1,28 @@
+{% extends base %}
+{%block title%}Challenges{%endblock%}
+{%block body%}
+{% for cat in category %}
+	<h3>{{cat.name}}</h3>
+	{%if cat.solved%}
+	<p>Solved Challenges:</p>
+	<ul>
+	{%for solved in cat.solved%}
+	<li>{{solved.name}}</li>
+	{%endfor%}
+	</ul>
+	{%endif%}
+	{%if cat.challenges %}
+	<p>Unlocked Challenges:</p>
+	<ul>
+	{%for challenge in cat.challenges%}
+		<li><a href="{{challenge.id}}">{{challenge.name}}</a></li>
+	{%endfor%}
+	</ul>
+	{%endif%}
+	{%if cat.unlockables%}
+	<p>Unlocks remaining: {{user.teammember.team.unlocks}}
+	<p>You may unlock this challenge:</p>
+	<a href="{{cat.unlockables.0.id}}/unlock/">Unlock {{cat.unlockables.0.name}}</a>
+	{%endif%}
+{%endfor%}
+{%endblock%}

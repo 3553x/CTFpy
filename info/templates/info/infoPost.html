@@ -1,0 +1,8 @@
+{% extends base %}
+{% block title %}Info{% endblock %}
+{% block body %}
+{% for info in object_list %}
+	<h4>{{ info.title }}</h4>
+	<p><pre>{{ info.content | safe }}</pre></p>
+{% endfor %}
+{% endblock %}

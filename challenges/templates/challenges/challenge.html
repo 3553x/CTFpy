@@ -1,0 +1,37 @@
+{% extends base %}
+{%block title%}{{challenge.name}} {%endblock%}
+
+{%block body%}
+<h3>{{challenge.name}}</h3>
+<p><pre>{{challenge.text | safe }}</pre></p>
+<h5>Time</h5>
+<p> You should be able to solve this in {{challenge.eta}} minutes.</p>
+<p> Challenge opened {{seen | timesince}} ago. </p>
+<h5>Hints</h5>
+<p>Unlocked hints:</p>
+<ol>
+{%for hint in unlockedHints%}
+<li><pre>{{hint.text | safe }}</pre></li>
+{%endfor%}
+</ol>
+{%if lockedHint.0%}
+<p>
+Need a hint?</p>
+<a href="hint/" class="button-primary">Price : {{lockedHint.0.penalty}} minutes</a>
+{%else%}
+<p>No more hints available.</p>
+{%endif%}
+<h5>Submit</h5>
+{% if message %}
+<h6>{{message}}</h6>
+{%elif solved%}
+<p>You already solved this challenge!</p>
+{%else%}
+<form action="" method="post">
+{{form.as_table}}
+{% csrf_token %}
+<br>
+<input type="submit" value="Submit">
+</form>
+{%endif%}
+{%endblock%}
