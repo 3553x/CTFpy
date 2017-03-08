@@ -26,6 +26,9 @@ def start(request):
 
 @login_required
 def index(request):
+    if not hasattr(request.user, 'teammember'):
+        return render(request, 'user/index.html',
+                {'base':'base.html', 'user':request.user})
     team = request.user.teammember.team
     noOfCategories = Category.objects.all().count()
     categoryInfos = noOfCategories * [None]
