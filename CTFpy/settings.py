@@ -25,7 +25,7 @@ SECRET_KEY = '78#!j)75@&niz=wh&=a^x)_bc#(_mvf%6^+s*@qr+@5ht+pgxt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [] #['127.0.0.1']
+ALLOWED_HOSTS = [b'ctf.cssoc.co.uk'] #['127.0.0.1']
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
