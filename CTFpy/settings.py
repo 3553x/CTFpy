@@ -23,15 +23,15 @@ LOGIN_URL = "/user/"
 SECRET_KEY = '78#!j)75@&niz=wh&=a^x)_bc#(_mvf%6^+s*@qr+@5ht+pgxt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [b'ctf.cssoc.co.uk'] #['127.0.0.1']
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
-#SECURE_SSL_REDIRECT = True
-#SESSION_COOKIE_SECURE = True
-#CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # Application definition
 
@@ -128,3 +128,30 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+	    'applogfile': {
+        'level':'DEBUG',
+        'class':'logging.handlers.RotatingFileHandler',
+        'filename': os.path.join(DJANGO_ROOT, 'debug.log'),
+        'maxBytes': 1024*1024*15, # 15MB
+        'backupCount': 10,
+    }
+    },
+    'loggers': {
+        'APPNAME': {
+            'handlers': ['applogfile',],
+            'level': 'DEBUG',
+        },
+    }
+}
