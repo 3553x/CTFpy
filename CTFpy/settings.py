@@ -23,15 +23,15 @@ LOGIN_URL = "/user/"
 SECRET_KEY = '78#!j)75@&niz=wh&=a^x)_bc#(_mvf%6^+s*@qr+@5ht+pgxt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [b'ctf.cssoc.co.uk'] #['127.0.0.1']
+ALLOWED_HOSTS = [b'ctf.cssoc.co.uk', "127.0.0.1", "localhost"] #['127.0.0.1']
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+#STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+#SECURE_SSL_REDIRECT = True
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
 
 # Application definition
 
@@ -143,7 +143,7 @@ LOGGING = {
 	    'applogfile': {
         'level':'DEBUG',
         'class':'logging.handlers.RotatingFileHandler',
-        'filename': os.path.join(DJANGO_ROOT, 'debug.log'),
+        'filename': os.path.join(BASE_DIR, 'debug.log'),
         'maxBytes': 1024*1024*15, # 15MB
         'backupCount': 10,
     }
