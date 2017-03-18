@@ -106,19 +106,20 @@ def challenge(request, challengeid):
             numWrong = WrongSubmisson.objects.filter(team = teamobj, 
                     challenge = chalobj).count()
             numHints = Hint.objects.filter(challenge = chalobj, usedBy = teamobj)
-            penWrong = 10
-            totHintPen = 0
+            penWrong = 0.05
+            totHintPen = 1
             for x in range(numHints.count()):
-                totHintPen += numHints[x].penalty
-            totPen = penWrong * numWrong + totHintPen
+                totHintPen *= 1 - numHints[x].penalty / 100
+            totPen = 1 - ((1 - penWrong) ** numWrong) * totHintPen
             eta = timedelta(minutes=chalobj.eta)
             estimatedSolve = eta.total_seconds()
             actualSolve = (timezone.now() - seenSince).total_seconds()
             actualSolve = 1 if actualSolve < 1 else actualSolve
-            factor = estimatedSolve / (actualSolve + totPen)
+            #factor = estimatedSolve / (actualSolve + totPen)
+            factor = 1 - totPen
             baseFactor = estimatedSolve / actualSolve
-            baseScore = (int)(baseFactor * chalobj.eta)
-            score = (int)(factor * chalobj.eta)
+            baseScore = (int)(chalobj.eta)
+            score = (int)(baseScore * factor)
             penal = baseScore - score
             SolvedChallenge(user = request.user, team = teamobj,
                     challenge = chalobj, time = timezone.now(),
