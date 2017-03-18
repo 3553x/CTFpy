@@ -60,8 +60,8 @@ def file(request, challengeid, filePath):
     demandedFile = ChallengeFile.objects.filter(challenge = challengeid,
             remotePath = filePath)
     if demandedFile.exists():
-        f = open(demandedFile.get().localPath, 'r')
-        response = HttpResponse(f.read(), content_type='application/octet-stream')
+        f = open(demandedFile.get().localPath, 'rb')
+        response = HttpResponse(f, content_type='application/octet-stream')
         response['Content-Disposition'] = 'attachment; filename=' + demandedFile.get().fileName
         f.close()
         return response
