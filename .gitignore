@@ -1,1 +1,3 @@
 *.pyc
+CTFpy/.secret
+db.sqlite3
