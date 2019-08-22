@@ -4,20 +4,20 @@ Ensure to pick a new secret key when switching to production and to turn off the
 Log into the admin interface and edit the specified objects.
 Some objects only exist for monitoring.
 
-# Category
+## Category
 Add the Categories of the challenges.
 
-# Challenges
+## Challenges
 Add the Challenges.
 Most fields are self-explanatory.
-ETA is the estimated time users should take to complete the challenge in minutes.
-Rank specifies the order in which the challenges should be unlocked.
-Rank must start with 1 and there can't be multiple challenges with the same rank in a category.
-Cat specifies the category.
-UnlockedBy should be left empty.
-Text uses HTML pre tags and isn't escaped.
+eta is the estimated time users should take to complete the challenge in minutes.
+rank specifies the order in which the challenges should be unlocked.
+rank must start with 1 and there can't be multiple challenges with the same rank in a category.
+cat specifies the category.
+unlockedBy should be left empty.
+text uses HTML pre tags and isn't escaped.
 
-# ChallengeFile
+## ChallengeFile
 Allows you to create links for files.
 Files are only accessible by logged in users who have unlocked the associated challenge.
 fileName is the name shown when downloaded.
@@ -29,15 +29,15 @@ challenge = 1
 then the file can be downloaded from
 localhost/challenges/1/test.txt
 
-# Hint
+## Hint
 text is the text to be revealed when the challenge is unlocked.
 penalty is the time in minutes that is added to the counter when the challenge is unlocked.
 
-# Team
+## Team
 Users may register on their own but need to be assigned to teams by the admin.
 Teams are also created by the admin and should consist of 4 members.
 
-# InfoPost
+## InfoPost
 FAQ like page
 add entries if you wish, text isn't escaped and preformatted.
 
@@ -60,4 +60,3 @@ A clock starts ticking the first time a user from a team opens a challenge.
 Each team has their own clock.
 When the team completes the challenge, the squared estimated time is divided by their needed time plus their penalties to calculate their score.
 Score is team based.
-
